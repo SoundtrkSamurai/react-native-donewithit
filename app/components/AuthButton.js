@@ -6,7 +6,7 @@ const AuthButton = ({color, text}) => {
   return ( 
     <Pressable 
     style={[{
-      backgroundColor: color === 'primary' ? 'salmon' : 'lightblue'
+      backgroundColor: color
     }, styles.container]}>
       <Text style={styles.text}>{text}</Text>
     </Pressable> 
