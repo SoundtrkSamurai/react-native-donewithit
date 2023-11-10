@@ -2,7 +2,7 @@ import { Platform, Pressable, StyleSheet, Text } from 'react-native'
 
 const buttonHeight = 50.0;
 
-const AuthButton = ({color, text}) => {
+const PressableButton = ({color, text}) => {
   return ( 
     <Pressable 
     style={[{
@@ -13,7 +13,7 @@ const AuthButton = ({color, text}) => {
   )
 }
 
-export default AuthButton
+export default PressableButton
 
 const styles = StyleSheet.create({
   container: {
