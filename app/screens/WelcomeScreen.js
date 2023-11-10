@@ -1,24 +1,28 @@
 import { Image, ImageBackground, StyleSheet, View, Text } from 'react-native';
+import AuthButton from '../components/AuthButton';
+import colors from '../utils/color';
 
-export default function WelcomeScreen(props) {
+export default function WelcomeScreen() {
+  const { primary, secondary } = colors;
   return (
       <ImageBackground
         source={require('../assets/background.jpg')}
         style={styles.background}
+        blurRadius={6}
       >
         <View style={styles.logoContainer}>
           <Image 
             source={require('../assets/logo-red.png')}
             style={styles.logo}
           />
-          <Text>Sell What You Dont Need</Text>
+          <Text style={styles.tagline}>Sell What You Dont Need</Text>
         </View>
-        <View
-          style={styles.loginButton}
-        ></View>
-        <View
-          style={styles.registerButton}
-        ></View>
+        <View style={[styles.buttonSytle, styles.loginButton]}>
+          <AuthButton color={primary} text='login' />
+        </View>
+        <View style={[styles.buttonSytle, styles.registerButton]}>
+          <AuthButton color={secondary} text='register' />
+        </View>
       </ImageBackground>
   );
 }
@@ -27,12 +31,17 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  buttonSytle: {
+    width: '100%',
+    position: 'absolute'
   },
   loginButton: {
-    width: '100%',
-    height: 70,
-    backgroundColor: 'salmon'
+    bottom: 120
   },
   logo: {
     width: 100,
@@ -44,8 +53,13 @@ const styles = StyleSheet.create({
     top: 70,
   },
   registerButton: {
-    width: '100%',
-    height: 70,
-    backgroundColor: 'lightblue'
+    bottom: 50
   },
+  tagline: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#000',
+    textTransform: 'capitalize',
+    marginTop: 10
+  }
 })
