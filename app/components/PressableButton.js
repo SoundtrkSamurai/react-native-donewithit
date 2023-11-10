@@ -1,13 +1,20 @@
 import { Platform, Pressable, StyleSheet, Text } from 'react-native'
+import colors from '../utils/color'
 
-const buttonHeight = 50.0;
+const { primary, white } = colors;
 
-const PressableButton = ({color, text}) => {
+const PressableButton = ({text, onPress, color = primary}) => {
   return ( 
     <Pressable 
-    style={[{
-      backgroundColor: color
-    }, styles.container]}>
+      style={({pressed}) => [
+        { 
+          backgroundColor: color, 
+          opacity: pressed ? 0.7 : 1,
+        }, 
+        styles.container
+      ]}
+      onPress={() => onPress()}
+    >
       <Text style={styles.text}>{text}</Text>
     </Pressable> 
   )
@@ -17,15 +24,17 @@ export default PressableButton
 
 const styles = StyleSheet.create({
   container: {
-    height: buttonHeight,
+    padding: 15,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: Platform.OS === 'android' ? buttonHeight/2.0 : '50%'
+    borderRadius: 25,
+    marginVertical: 10
   }, 
   text: {
     fontWeight: 'bold',
+    fontSize: 18,
     textTransform: 'uppercase',
-    color: 'white'
+    color: white
   }
 })

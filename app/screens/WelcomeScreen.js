@@ -1,5 +1,5 @@
 import { Image, ImageBackground, StyleSheet, View, Text } from 'react-native';
-import AuthButton from '../components/AuthButton';
+import PressableButton from '../components/PressableButton';
 import colors from '../utils/color';
 
 export default function WelcomeScreen() {
@@ -17,11 +17,9 @@ export default function WelcomeScreen() {
           />
           <Text style={styles.tagline}>Sell What You Dont Need</Text>
         </View>
-        <View style={[styles.buttonSytle, styles.loginButton]}>
-          <AuthButton color={primary} text='login' />
-        </View>
-        <View style={[styles.buttonSytle, styles.registerButton]}>
-          <AuthButton color={secondary} text='register' />
+        <View style={styles.buttonContainer}>
+          <PressableButton color={primary} text='login' />
+          <PressableButton color={secondary} text='register' />
         </View>
       </ImageBackground>
   );
@@ -32,16 +30,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 30,
-    paddingLeft: 20,
-    paddingRight: 20,
+    width: '100%',
+    height: '100%'
   },
-  buttonSytle: {
+  buttonContainer: {
+    padding: 20,
     width: '100%',
     position: 'absolute'
-  },
-  loginButton: {
-    bottom: 120
   },
   logo: {
     width: 100,
@@ -52,14 +47,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 70,
   },
-  registerButton: {
-    bottom: 50
-  },
   tagline: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 25,
     color: '#000',
     textTransform: 'capitalize',
-    marginTop: 10
+    paddingVertical: 20
   }
 })
