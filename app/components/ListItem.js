@@ -1,19 +1,26 @@
-import { Image, StyleSheet, View } from 'react-native';
-import AppText from './AppText';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import colors from '../utils/color';
+import AppText from './AppText';
 
 const avatarDiameter = 70;
-const { medium } = colors;
+const { medium, light, white } = colors;
 
-const ListItem = ({title, subTitle, image}) => {
+const ListItem = ({title, subTitle, image, onPress}) => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={image} resizeMode={'stretch'}/>
-      <View>
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{subTitle}</AppText>
+    <Pressable
+      style={({pressed}) => [
+        { backgroundColor: (pressed) ? light : white }
+      ]}
+      onPress={onPress}
+    >
+      <View style={styles.container}>
+        <Image style={styles.image} source={image} resizeMode={'stretch'}/>
+        <View>
+          <AppText style={styles.title}>{title}</AppText>
+          <AppText style={styles.subTitle}>{subTitle}</AppText>
+        </View>
       </View>
-    </View>
+    </Pressable>
   )
 }
 
@@ -21,7 +28,8 @@ export default ListItem
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    padding: 15
   },
   image: {
     width: avatarDiameter,

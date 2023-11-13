@@ -1,7 +1,7 @@
-import Constants from 'expo-constants'
-import { FlatList, StyleSheet, Text } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import ListItem from '../components/ListItem'
 import Screen from '../components/Screen'
+import ListItemSeparator from '../components/ListItemSeparator'
 
 const messages = [
   {
@@ -28,8 +28,10 @@ const MessagesScreen = () => {
             title={item.title}
             subTitle={item.description}
             image={item.image}
+            onPress={() => { console.log('Message selected', item) }}
           />
         }
+        ItemSeparatorComponent={<ListItemSeparator />}
       >
         <Text>MessagesScreen</Text>
       </FlatList>
