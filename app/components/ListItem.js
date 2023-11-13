@@ -1,26 +1,29 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import colors from '../utils/color';
 import AppText from './AppText';
 
 const avatarDiameter = 70;
 const { medium, light, white } = colors;
 
-const ListItem = ({title, subTitle, image, onPress}) => {
+const ListItem = ({title, subTitle, image, onPress, renderRightActions}) => {
   return (
-    <Pressable
-      style={({pressed}) => [
-        { backgroundColor: (pressed) ? light : white }
-      ]}
-      onPress={onPress}
-    >
-      <View style={styles.container}>
-        <Image style={styles.image} source={image} resizeMode={'stretch'}/>
-        <View>
-          <AppText style={styles.title}>{title}</AppText>
-          <AppText style={styles.subTitle}>{subTitle}</AppText>
-        </View>
-      </View>
-    </Pressable>
+      <Swipeable renderRightActions={renderRightActions}>
+        <Pressable
+          style={({pressed}) => [
+            { backgroundColor: (pressed) ? light : white }
+          ]}
+          onPress={onPress}
+        >
+          <View style={styles.container}>
+            <Image style={styles.image} source={image} resizeMode={'stretch'}/>
+            <View>
+              <AppText style={styles.title}>{title}</AppText>
+              <AppText style={styles.subTitle}>{subTitle}</AppText>
+            </View>
+          </View>
+        </Pressable>
+      </Swipeable>
   )
 }
 

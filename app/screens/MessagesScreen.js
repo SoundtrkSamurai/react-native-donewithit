@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import ListItem from '../components/ListItem'
 import Screen from '../components/Screen'
 import ListItemSeparator from '../components/ListItemSeparator'
+import ListItemDeleteItem from '../components/ListItemDeleteItem'
 
 const messages = [
   {
@@ -29,9 +30,10 @@ const MessagesScreen = () => {
             subTitle={item.description}
             image={item.image}
             onPress={() => { console.log('Message selected', item) }}
+            renderRightActions={ListItemDeleteItem}
           />
         }
-        ItemSeparatorComponent={<ListItemSeparator />}
+        ItemSeparatorComponent={ListItemSeparator}
       >
         <Text>MessagesScreen</Text>
       </FlatList>
