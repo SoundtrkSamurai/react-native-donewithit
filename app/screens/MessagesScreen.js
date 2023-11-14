@@ -22,6 +22,7 @@ const initialMessages = [
 
 const MessagesScreen = () => {
   const [messages, setMessages] = useState(initialMessages);
+  const [refreshing, setRefreshing] = useState(false);
   
   const handleDelete = message => {
     setMessages(messages.filter(m => m.id !== message.id));
@@ -46,6 +47,8 @@ const MessagesScreen = () => {
           />
         }
         ItemSeparatorComponent={ListItemSeparator}
+        refreshing={refreshing}
+        onRefresh={() => setMessages([initialMessages[1]])}
       >
         <Text>MessagesScreen</Text>
       </FlatList>
