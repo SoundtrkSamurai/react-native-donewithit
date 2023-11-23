@@ -32,7 +32,7 @@ const MyAccountScreen = () => {
             renderItem={({ item }) =>
               <IconListItem
                 iconName={item.iconName}
-                iconColor={item.color}
+                backgroundColor={item.color}
                 title={item.title}
               />
             }
@@ -41,7 +41,7 @@ const MyAccountScreen = () => {
           <View style={styles.logout}>
             <IconListItem
               iconName='logout'
-              iconColor='#ffe66d'
+              backgroundColor='#ffe66d'
               title='Logout'
             />
           </View>

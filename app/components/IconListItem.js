@@ -6,7 +6,7 @@ import AppText from './AppText'
 
 const { white, light, medium } = colors
 
-const IconListItem = ({ iconName, iconColor, title }) => {
+const IconListItem = ({ iconName, title, iconColor= white, backgroundColor = '#fff', size = 45 }) => {
   return (
     <Pressable 
       style={({ pressed }) => [
@@ -16,14 +16,18 @@ const IconListItem = ({ iconName, iconColor, title }) => {
     >
       <View 
         style={[
-          { backgroundColor: iconColor ? iconColor : medium }, 
+          { backgroundColor,
+            width: size,
+            height: size,
+            borderRadius: size / 2.0, 
+          }, 
           styles.itemIcon
         ]}
       >
         <MaterialCommunityIcons
           name={iconName}
-          color={white}
-          size={25}
+          color={iconColor}
+          size={size * 0.5}
         />
       </View>
       <AppText style={styles.itemTitle}>{title}</AppText>
@@ -40,9 +44,6 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   itemIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2.0, 
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10
