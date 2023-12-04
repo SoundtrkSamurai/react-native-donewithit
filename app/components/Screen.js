@@ -1,12 +1,17 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
-import React from 'react'
+import { SafeAreaView, StyleSheet, View, Platform } from 'react-native'
 
 const Screen = ({children, style}) => {
   return (
     <SafeAreaView style={[styles.screen, style]}>
-      {children}
-    </SafeAreaView >
+      {/* Implementation of external padding style to screen is platform dependent */}
+      {(Platform.OS === 'android') ? 
+        children :
+        <View style={[{flex: 1}, style]}>
+          {children}
+        </View>
+      }
+    </SafeAreaView>
   )
 }
 
@@ -16,5 +21,5 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     paddingTop: Constants.statusBarHeight
-  }
+  },
 })
