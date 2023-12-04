@@ -6,7 +6,7 @@ import AppText from './AppText';
 const avatarDiameter = 70;
 const { medium, light, white } = colors;
 
-const ListItem = ({title, subTitle, image, onPress, renderRightActions}) => {
+const ListItem = ({title, subTitle, image, IconComponent, onPress, renderRightActions}) => {
   return (
       <Swipeable renderRightActions={renderRightActions}>
         <Pressable
@@ -16,10 +16,11 @@ const ListItem = ({title, subTitle, image, onPress, renderRightActions}) => {
           onPress={onPress}
         >
           <View style={styles.container}>
-            <Image style={styles.image} source={image} resizeMode={'stretch'}/>
-            <View>
+            {IconComponent}
+            {image && <Image style={styles.image} source={image} resizeMode={'stretch'}/>}
+            <View style={styles.detailsContainer}>
               <AppText style={styles.title}>{title}</AppText>
-              <AppText style={styles.subTitle}>{subTitle}</AppText>
+              {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
             </View>
           </View>
         </Pressable>
@@ -34,11 +35,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 15
   },
+  detailsContainer: {
+    marginLeft: 10,
+    justifyContent: 'center'
+  },
   image: {
     width: avatarDiameter,
     height: avatarDiameter,
     borderRadius: avatarDiameter / 2.0,
-    marginRight: 10,
   },
   subTitle: {
     color: medium
