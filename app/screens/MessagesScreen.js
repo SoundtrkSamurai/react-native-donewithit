@@ -8,14 +8,14 @@ import { useState } from 'react'
 const initialMessages = [
   {
     id: 1,
-    title: 'T1',
-    description: 'D1',
+    title: 'Bushido Black',
+    description: 'Hey! Is this item still available?',
     image: require('../assets/avatar.png')
   },
   {
     id: 2,
-    title: 'T2',
-    description: 'D2',
+    title: 'Soundtrack Samurai',
+    description: "I'm interest in this item. When will you be able to post it?",
     image: require('../assets/avatar.png')
   },
 ]
