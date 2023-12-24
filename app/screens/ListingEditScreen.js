@@ -41,8 +41,9 @@ function ListingEditScreen() {
           maxLength={8}
           name="price"
           placeholder="Price"
+          width={120}
         />
-        <Picker items={categories} name="category" placeholder="Category" />
+        <Picker items={categories} width="50%" name="category" placeholder="Category" />
         <FormField
           maxLength={255}
           multiline
