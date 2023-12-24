@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Screen from '../components/Screen'
 import { Formik } from 'formik';
+import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
+import AppButton from '../components/AppButton';
 import AppTextInput from '../components/AppTextInput';
 import ErrorMessage from '../components/ErrorMessage';
-import AppButton from '../components/AppButton';
+import Screen from '../components/Screen';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),

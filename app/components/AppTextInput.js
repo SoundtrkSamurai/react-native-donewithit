@@ -1,7 +1,7 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { StyleSheet, TextInput, View } from 'react-native'
-import colors from '../utils/color'
-import defaultStyles from '../utils/styles'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, TextInput, View } from 'react-native';
+import colors from '../utils/color';
+import defaultStyles from '../utils/styles';
 
 const { light, medium, dark } = colors;
 
@@ -16,7 +16,8 @@ const AppTextInput = ({ icon, ...otherProps }) => {
           color={medium}
         />
       }
-      <TextInput 
+      <TextInput
+        placeholderTextColor={medium}
         styles={defaultStyles.text}
         {...otherProps}
       />
