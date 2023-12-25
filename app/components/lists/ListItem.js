@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import colors from '../utils/color';
-import AppText from './AppText';
+import colors from '../../utils/color';
+import AppText from '../AppText';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 const avatarDiameter = 70;
