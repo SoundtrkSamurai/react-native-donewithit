@@ -7,6 +7,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AuthNavigator from "./app/nagivation/AuthNavigator";
+import navigationTheme from "./app/nagivation/navigationTheme";
+import AppNavigator from "./app/nagivation/AppNavigator";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import AccountScreen from "./app/screens/AccountScreen";
 
 const Tweets = ({ navigation }) => (
   <Screen>
@@ -70,8 +74,8 @@ const TabNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AuthNavigator />
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
     </NavigationContainer>
   );
 }
