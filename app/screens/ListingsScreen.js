@@ -19,8 +19,8 @@ const ListingsScreen = ({ navigation }) => {
   }, []);
 
   const loadListings = async () => {
-    const { problem, data } = await listingsApi.getListings();
-    if (problem) {
+    const { ok, data } = await listingsApi.getListings();
+    if (!ok) {
       setError(true);
       return;
     }
