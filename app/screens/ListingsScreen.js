@@ -1,13 +1,11 @@
-import { FlatList, StyleSheet } from "react-native";
-import { useEffect, useState } from "react";
-import ActivityIndicator from "../components/ActivityIndicator";
+import AppActivityIndicator from "../components/AppActivityIndicator";
 import AppText from "../components/AppText";
 import Button from "../components/AppButton";
-import Card from "../components/Card";
+import Screen from "../components/Screen";
 import colors from "../utils/color";
 import listingsApi from "../api/listings";
-import routes from "../nagivation/routes";
-import Screen from "../components/Screen";
+import { StyleSheet } from "react-native";
+import { useEffect, useState } from "react";
 
 const { light } = colors;
 
@@ -42,7 +40,7 @@ const ListingsScreen = ({ navigation }) => {
           <Button text="Retry" onPress={loadListings} />
         </>
       )}
-      <ActivityIndicator visible={true} size="large" />
+      <AppActivityIndicator />
       {/* <FlatList
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
