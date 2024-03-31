@@ -45,9 +45,9 @@ const categories = [
 const ListingEditScreen = () => {
   const location = useLocation();
 
-  const handleSumbmit = async (listing) => {
-    const { ok } = await listingsApi.addListing({ ...listing, location });
-    if (!ok) {
+  const handleSubmit = async (listing) => {
+    const result = await listingsApi.addListing({ ...listing, location });
+    if (!result.ok) {
       return alert("Could not save the listing!");
     } else {
       alert("Success");
@@ -64,7 +64,7 @@ const ListingEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={handleSumbmit}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
