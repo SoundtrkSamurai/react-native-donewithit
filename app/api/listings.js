@@ -13,7 +13,7 @@ const addListing = (listing) => {
 
   listing.images.forEach((image, index) =>
     data.append("images", {
-      name: `image${index}`,
+      name: "image" + index,
       type: "image/jpeg",
       uri: image,
     })
@@ -22,7 +22,7 @@ const addListing = (listing) => {
   if (listing.location)
     data.append("location", JSON.stringify(listing.location));
 
-  return client.post(endpoint, data);
+  return client.post(endpoint, JSON.stringify(data));
 };
 
 export default {
