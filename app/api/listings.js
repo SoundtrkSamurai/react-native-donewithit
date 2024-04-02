@@ -19,10 +19,14 @@ const addListing = (listing) => {
     })
   );
 
-  if (listing.location)
-    data.append("location", JSON.stringify(listing.location));
+  if (listing.location) {
+    const { location } = listing;
+    data.append("location", JSON.stringify({ ...location }));
+  }
 
-  return client.post(endpoint, JSON.stringify(data));
+  return client.post(endpoint, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 };
 
 export default {
