@@ -11,6 +11,8 @@ import {
   SubmitButton,
 } from "../components/forms";
 import useLocation from "../hooks/useLocation";
+import { useState } from "react";
+import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -43,19 +45,29 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
+  const [uploadVisible, setUploadVisible] = useState(false);
   const location = useLocation();
 
-  const handleSubmit = async (listing) => {
+  const handleSubmit = async (listing, { resetForm }) => {
+    setUploadVisible(true);
     const result = await listingsApi.addListing({ ...listing });
+
     if (!result.ok) {
+      setUploadVisible(false);
       return alert("Could not save the listing!");
-    } else {
-      alert("Success");
     }
+
+    resetForm();
   };
 
   return (
     <Screen style={styles.container}>
+      <UploadScreen
+        onDone={() => {
+          setUploadVisible(false);
+        }}
+        visible={uploadVisible}
+      />
       <Form
         initialValues={{
           title: "",
