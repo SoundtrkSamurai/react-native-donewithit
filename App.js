@@ -1,16 +1,12 @@
-import "react-native-gesture-handler";
-import { Button, Text, Platform } from "react-native";
-import Screen from "./app/components/Screen";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AuthNavigator from "./app/nagivation/AuthNavigator";
-import navigationTheme from "./app/nagivation/navigationTheme";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Button, Text } from "react-native";
+import "react-native-gesture-handler";
+import Screen from "./app/components/Screen";
 import AppNavigator from "./app/nagivation/AppNavigator";
-import RegisterScreen from "./app/screens/RegisterScreen";
-import AccountScreen from "./app/screens/AccountScreen";
+import navigationTheme from "./app/nagivation/navigationTheme";
 
 const Tweets = ({ navigation }) => (
   <Screen>
