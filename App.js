@@ -7,6 +7,7 @@ import "react-native-gesture-handler";
 import Screen from "./app/components/Screen";
 import AppNavigator from "./app/nagivation/AppNavigator";
 import navigationTheme from "./app/nagivation/navigationTheme";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 const Tweets = ({ navigation }) => (
   <Screen>
@@ -70,8 +71,11 @@ const TabNavigator = () => (
 
 export default function App() {
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </>
   );
 }
