@@ -1,17 +1,18 @@
-import { Formik } from "formik";
-import { StyleSheet } from "react-native";
-import usersApi from "../api/users";
 import { useState } from "react";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-import ActivityIndicator from "../components/ActivityIndicator";
-import AppButton from "../components/AppButton";
-import AppTextInput from "../components/AppTextInput";
 import authApi from "../api/auth";
-import ErrorMessage from "../components/forms/ErrorMessage";
+import usersApi from "../api/users";
+import AppActivityIndicator from "../components/AppActivityIndicator";
 import Screen from "../components/Screen";
+import {
+  AppForm,
+  AppFormField,
+  ErrorMessage,
+  SubmitButton,
+} from "../components/forms";
 import useApi from "../hooks/useApi";
 import useAuth from "../hooks/useAuth";
-import AppActivityIndicator from "../components/AppActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -47,43 +48,38 @@ const RegisterScreen = () => {
   return (
     <Screen style={styles.container}>
       <AppActivityIndicator loading={registerApi.loading || loginApi.loading} />
-      <Formik
+      <AppForm
         initialValues={{ name: "", email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
-          <>
-            <ErrorMessage error={error} visible={error} />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="account"
-              onChangeText={handleChange("name")}
-              placeHolder="Name"
-            />
-            <ErrorMessage error={errors.name} />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              onChangeText={handleChange("email")}
-              placeHolder="Email"
-            />
-            <ErrorMessage error={errors.email} />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              onChangeText={handleChange("password")}
-              secureTextEntry={true}
-            />
-            <ErrorMessage error={errors.password} />
-            <AppButton text="Register" onPress={handleSubmit} />
-          </>
-        )}
-      </Formik>
+        <ErrorMessage error={error} visible={error} />
+        <AppFormField
+          autoCorrect={false}
+          icon="account"
+          name="name"
+          placeholder="Name"
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          name="email"
+          placeholder="Email"
+          textContentType="emailAddress"
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          name="password"
+          placeholder="Password"
+          secureTextEntry
+          textContentType="password"
+        />
+        <SubmitButton text="Register" />
+      </AppForm>
     </Screen>
   );
 };
