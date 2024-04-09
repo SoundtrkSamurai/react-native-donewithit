@@ -79,7 +79,7 @@ const TabNavigator = () => (
 );
 
 export default function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [isReady, setIsReady] = useState(false);
 
   const restoreUser = async () => {
@@ -87,8 +87,9 @@ export default function App() {
 
     if (authUser) {
       setUser(authUser);
-      setIsReady(true);
     }
+
+    setIsReady(true);
   };
 
   useEffect(() => {
