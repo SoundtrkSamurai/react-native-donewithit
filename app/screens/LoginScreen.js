@@ -1,13 +1,15 @@
 import "core-js/stable/atob";
-import { Formik } from "formik";
-import { Image, StyleSheet } from "react-native";
 import { useState } from "react";
+import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
-import AppButton from "../components/AppButton";
-import AppTextInput from "../components/AppTextInput";
 import authApi from "../api/auth";
-import ErrorMessage from "../components/forms/ErrorMessage";
 import Screen from "../components/Screen";
+import {
+  AppFormField,
+  ErrorMessage,
+  SubmitButton,
+  AppForm,
+} from "../components/forms";
 import useAuth from "../hooks/useAuth";
 
 const validationSchema = Yup.object().shape({
@@ -16,55 +18,51 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginScreen = () => {
-  const { login } = useAuth();
+  const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async ({ email, password }) => {
     const result = await authApi.login(email, password);
+    console.log("Login Result", result);
     if (!result.ok) {
       setLoginFailed(true);
       return;
     }
     setLoginFailed(false);
-    login(result.data);
+    auth.login(result.data);
   };
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-
-      <Formik
+      <AppForm
         initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        {({ handleChange, handleSubmit, errors }) => (
-          <>
-            <ErrorMessage
-              error="Invalid email and/or password"
-              visible={loginFailed}
-            />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="email"
-              keyboardType="email-address"
-              onChangeText={handleChange("email")}
-              placeholder="Email"
-            />
-            <ErrorMessage error={errors.email} />
-            <AppTextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              icon="lock"
-              onChangeText={handleChange("password")}
-              placeholder="Password"
-              secureTextEntry={true}
-            />
-            <ErrorMessage error={errors.password} />
-            <AppButton text="Login" onPress={handleSubmit} />
-          </>
-        )}
-      </Formik>
+        <ErrorMessage
+          error="Invalid email and/or password"
+          visible={loginFailed}
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="email"
+          keyboardType="email-address"
+          name="email"
+          placeholder="Email"
+          textContentType="emailAddress"
+        />
+        <AppFormField
+          autoCapitalize="none"
+          autoCorrect={false}
+          icon="lock"
+          name="password"
+          placeholder="Password"
+          secureTextEntry={true}
+          textContentType="password"
+        />
+        <SubmitButton text="Login" />
+      </AppForm>
     </Screen>
   );
 };
