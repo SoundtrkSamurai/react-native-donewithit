@@ -1,10 +1,13 @@
 import { Image, StyleSheet, View, FlatList } from "react-native";
+import { useContext } from "react";
 import AppText from "../components/AppText";
-import Screen from "../components/Screen";
-import ListItem from "../components/lists/ListItem";
+import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 import colors from "../utils/color";
-import ListItemSeparator from "../components/lists/ListItemSeparator";
 import Icon from "../components/Icon";
+import ListItem from "../components/lists/ListItem";
+import ListItemSeparator from "../components/lists/ListItemSeparator";
+import Screen from "../components/Screen";
 
 const { primary, secondary, light, medium, white } = colors;
 
@@ -20,6 +23,13 @@ const menuItems = [
   },
 ];
 const AccountScreen = ({ navigation }) => {
+  const { user, setUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -29,8 +39,8 @@ const AccountScreen = ({ navigation }) => {
             source={require("../assets/avatar.png")}
           />
           <View>
-            <AppText style={styles.name}>Allen Taylor</AppText>
-            <AppText style={styles.username}>allen.taylor@gmail.com</AppText>
+            <AppText style={styles.name}>{user.name}</AppText>
+            <AppText style={styles.username}>{user.email}</AppText>
           </View>
         </View>
         <FlatList
@@ -52,6 +62,7 @@ const AccountScreen = ({ navigation }) => {
           <ListItem
             title="Logout"
             IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+            onPress={handleLogout}
           />
         </View>
       </View>
