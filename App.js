@@ -11,9 +11,10 @@ import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import OfflineNotice from "./app/components/OfflineNotice";
 import Screen from "./app/components/Screen";
-import AppNavigator from "./app/nagivation/AppNavigator";
-import AuthNavigator from "./app/nagivation/AuthNavigator";
-import navigationTheme from "./app/nagivation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+import { naviagationRef } from "./app/navigation/rootNavigation";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -110,7 +111,7 @@ export default function App() {
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <AuthContext.Provider value={{ user, setUser }}>
         <OfflineNotice />
-        <NavigationContainer theme={navigationTheme}>
+        <NavigationContainer ref={naviagationRef} theme={navigationTheme}>
           {user ? <AppNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       </AuthContext.Provider>

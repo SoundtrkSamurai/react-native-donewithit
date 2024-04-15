@@ -10,6 +10,7 @@ import routes from "./routes";
 import { useEffect, useState, useRef } from "react";
 import Constants from "expo-constants";
 import expoPushTokens from "../api/expoPushTokens";
+import navigation from "./rootNavigation";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -41,7 +42,7 @@ const AppNavigator = () => {
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
+        navigation.navigate("Account");
       });
 
     return () => {
