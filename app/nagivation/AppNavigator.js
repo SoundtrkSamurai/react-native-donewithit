@@ -9,6 +9,7 @@ import NewListingButton from "./NewListingButton";
 import routes from "./routes";
 import { useEffect, useState, useRef } from "react";
 import Constants from "expo-constants";
+import expoPushTokens from "../api/expoPushTokens";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -93,6 +94,7 @@ const AppNavigator = () => {
           projectId: Constants.expoConfig.extra.eas.projectId,
         })
       ).data;
+      expoPushTokens.register(token);
     } else {
       alert("Must use physical device for Push Notifications");
     }
