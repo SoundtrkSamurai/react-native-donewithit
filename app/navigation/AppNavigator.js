@@ -1,16 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as Notifications from "expo-notifications";
+import { useEffect, useState, useRef } from "react";
 import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
 import AccountNavigator from "./AccountNavigator";
+import Constants from "expo-constants";
+import expoPushTokens from "../api/expoPushTokens";
 import FeedNavigator from "./FeedNavigator";
 import ListingEditScreen from "../screens/ListingEditScreen";
 import NewListingButton from "./NewListingButton";
 import routes from "./routes";
-import { useEffect, useState, useRef } from "react";
-import Constants from "expo-constants";
-import expoPushTokens from "../api/expoPushTokens";
-import navigation from "./rootNavigation";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -42,7 +41,7 @@ const AppNavigator = () => {
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        navigation.navigate("Account");
+        // navigation.navigate("Account");
       });
 
     return () => {
