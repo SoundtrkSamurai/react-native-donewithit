@@ -1,18 +1,27 @@
-import { NavigationContainer } from "@react-navigation/native";
 import "core-js/stable/atob";
-import * as SplashScreen from "expo-splash-screen";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 import { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
-import "react-native-gesture-handler";
-import AuthContext from "./app/auth/context";
-import authStorage from "./app/auth/storage";
-import OfflineNotice from "./app/components/OfflineNotice";
+import * as Notifications from "expo-notifications";
+import * as SplashScreen from "expo-splash-screen";
 import AppNavigator from "./app/navigation/AppNavigator";
+import AuthContext from "./app/auth/context";
 import AuthNavigator from "./app/navigation/AuthNavigator";
+import authStorage from "./app/auth/storage";
 import navigationTheme from "./app/navigation/navigationTheme";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   const [user, setUser] = useState(null);
