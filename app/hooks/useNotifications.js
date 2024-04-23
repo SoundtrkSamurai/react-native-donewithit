@@ -22,11 +22,10 @@ export default useNotifications = (notificationCallback) => {
         setNotification(notification);
       });
 
-    responseListener.current = notificationCallback
-      ? Notifications.addNotificationResponseReceivedListener(
-          notificationCallback
-        )
-      : () => {};
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener(
+        notificationCallback ? notificationCallback : () => {}
+      );
 
     return () => {
       Notifications.removeNotificationSubscription(
