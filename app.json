@@ -39,5 +39,8 @@
     },
     "sdkVersion": "49.0.0"
   },
-  "name": "react-native-donewithit"
+  "name": "react-native-donewithit",
+  "notification": {
+    "iosDisplayInForeground": true
+  }
 }
